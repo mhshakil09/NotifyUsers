@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -26,7 +27,7 @@ class RegistrationActivity : AppCompatActivity() {
     lateinit var etPassword : EditText
     lateinit var btnRegister : Button
     lateinit var btnGoBack : Button
-    lateinit var btnInformation : Button
+    lateinit var btnInformation : ImageView
     var valid = true
 
 
@@ -92,7 +93,7 @@ class RegistrationActivity : AppCompatActivity() {
         }
 
         btnInformation.setOnClickListener{
-            Toast.makeText(this, "*no space allowed\n*20 character Limit\n*all converts to lowercase\n*only \"a-z\"  \"0-9\"  \"-\"  \"_\"  are allowed", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "*minimum 6 character is needed for password", Toast.LENGTH_LONG).show()
         }
 
     }

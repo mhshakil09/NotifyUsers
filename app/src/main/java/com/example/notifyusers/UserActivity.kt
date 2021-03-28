@@ -2,6 +2,9 @@ package com.example.notifyusers
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -20,6 +23,8 @@ class UserActivity : AppCompatActivity() {
 
     // cvTopicList
     lateinit var tvTopics : TextView
+    lateinit var tvChannelList : TextView
+    var flagAdmin = 0
 
     // cvMyTopicList
     lateinit var tvMyTopicList : TextView
@@ -47,6 +52,8 @@ class UserActivity : AppCompatActivity() {
         fStore = FirebaseFirestore.getInstance()
 
         tvTopics = findViewById(R.id.tvTopics)
+        tvChannelList = findViewById(R.id.tvChannelList)
+
 
         tvMyTopicList = findViewById(R.id.tvMyTopicList)
 
@@ -213,19 +220,13 @@ class UserActivity : AppCompatActivity() {
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        tvChannelList.setOnClickListener {
+            flagAdmin+=1
+            if (flagAdmin == 7) {
+                btnGoToAdmin.visibility = View.VISIBLE
+            }
+            Handler(Looper.myLooper()!!).postDelayed(Runnable { flagAdmin = 0 }, 1000)
+        }
 
         btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
